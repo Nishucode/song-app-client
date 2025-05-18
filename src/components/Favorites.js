@@ -8,7 +8,7 @@ const Favorites = ({ token }) => {
   useEffect(() => {
     const fetchFavorites = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/songs/favorites', {
+        const res = await axios.get('https://song-app-server.onrender.com/api/songs/favorites', {
           headers: { 'x-auth-token': token },
         });
         setFavorites(res.data);
@@ -22,7 +22,7 @@ const Favorites = ({ token }) => {
   const toggleFavorite = async (songId) => {
     try {
       await axios.post(
-        `http://localhost:5000/api/songs/favorite/${songId}`,
+        `https://song-app-server.onrender.com/api/songs/favorite/${songId}`,
         {},
         { headers: { 'x-auth-token': token } }
       );

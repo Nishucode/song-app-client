@@ -13,7 +13,7 @@ const Register = ({ setToken }) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/register', { email, password });
+      const res = await axios.post('https://song-app-server.onrender.com/api/auth/register',  { email, password });
       setToken(res.data.token);
       localStorage.setItem('token', res.data.token);
       navigate('/');
