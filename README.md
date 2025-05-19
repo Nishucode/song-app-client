@@ -1,70 +1,105 @@
-# Getting Started with Create React App
+Song App Frontend
+Overview
+The Song App Frontend is a React-based web application that provides a user-friendly interface for the Song App, a music streaming platform. It allows users to register, log in, browse songs, save favorites, and listen to music via Spotify embeds. The frontend communicates with the Song App Backend (Node.js/Express) and is deployed on Vercel (https://song-app-client.vercel.app).
+Features
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+User Authentication: Register and login with email/password, featuring "Remember Me" with customizable session durations (30 days, 6 months, forever).
+Song Browsing: Displays songs from MongoDB Atlas with Spotify embeds.
+Favorites: Save and manage favorite songs.
+Responsive Design: Tailwind CSS for mobile-friendly UI.
+Voice Search: Experimental voice search for songs.
+Deployment: Hosted on Vercel for fast, scalable access.
 
-## Available Scripts
+Prerequisites
 
-In the project directory, you can run:
+Node.js: Version 22.15.0 or higher.
+Song App Backend: A running instance (https://song-app-server.onrender.com or local http://localhost:5000).
+Vercel Account: For deployment.
+Spotify Account: Required to listen to music via Spotify embeds.
+GitHub Account: For repository management.
 
-### `npm start`
+Setup Instructions
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Clone the Repository:
+git clone https://github.com/Nishucode/song-app-client.git
+cd song-app-client
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+Install Dependencies:
+npm install
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Dependencies include react, react-router-dom, axios, and tailwindcss.
 
-### `npm run build`
+Configure Backend URL:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Open src/components files (Register.js, Login.js, SongList.js, Favorites.js).
+Ensure API calls use the deployed backend:axios.post('https://song-app-server.onrender.com/api/auth/register', { ... });
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+For local testing, use http://localhost:5000.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Run Locally:
+npm start
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Opens http://localhost:3000 in your browser.
+Requires the backend to be running.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+Deploy to Vercel:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Create a Vercel account and link your GitHub repository.
+Set up a new project:
+Repository: Nishucode/song-app-client.
+Framework: React.
+Build Command: npm run build.
+Output Directory: build.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+Deploy and verify at https://song-app-client.vercel.app.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Security Precautions
 
-### Making a Progressive Web App
+API Calls: Use HTTPS for backend requests (https://song-app-server.onrender.com).
+Sensitive Data: Avoid hardcoding backend URLs or tokens in source code. Use environment variables for production (e.g., Vercel environment variables).
+Git Ignore: Ensure .gitignore includes:node_modules/
+.env
+build/
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+Token Storage: JWTs are stored in localStorage. For production, consider secure alternatives like HTTP-only cookies.
+Input Validation: Relies on backend validation (express-validator). Do not bypass frontend checks.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Troubleshooting
 
-### Deployment
+"Registration Failed":
+Verify backend URL in src/components.
+Check Render logs for MongoDB connection errors.
+Increase axios timeout (e.g., { timeout: 60000 }) for Render cold starts.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+Slow Loading: Render’s free tier may cause delays. Ensure UptimeRobot pings the backend’s /health endpoint.
+Spotify Embeds: Ensure a valid Spotify account is logged in. Check Spotify’s Terms of Service.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Disclaimer
+
+Study Purpose Only: This project is intended for educational and learning purposes only. It is not designed or licensed for commercial use.
+Spotify Account Required: A valid Spotify account is required to listen to music, as the app uses Spotify embeds for streaming. Ensure compliance with Spotify’s Terms of Service.
+No Warranty: The software is provided "as is" without any warranties, express or implied. Use at your own risk.
+Data Privacy: Do not store sensitive personal data in the app. Ensure compliance with data protection laws (e.g., GDPR, CCPA) if applicable.
+Third-Party Services: The app relies on Vercel, Render, MongoDB Atlas, and Spotify. Review their respective terms and privacy policies.
+
+Contributing
+Contributions are welcome for educational purposes. Please:
+
+Fork the repository.
+Create a feature branch (git checkout -b feature/YourFeature).
+Commit changes (git commit -m 'Add YourFeature').
+Push to the branch (git push origin feature/YourFeature).
+Open a Pull Request.
+
+License
+MIT License - Free to use, modify, and distribute for non-commercial educational purposes.
